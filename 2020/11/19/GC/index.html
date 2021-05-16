@@ -1,0 +1,198 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GC | Asura7969 Blog</title><meta name="keywords" content="java"><meta name="author" content="Asura7969"><meta name="copyright" content="Asura7969"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="GC 算法重点关注的GC case1、**System.gc()**： 手动触发GC操作。 2、CMS： CMS GC 在执行过程中的一些动作，重点关注 CMS Initial Mark 和 CMS Final Remark 两个 STW 阶段 3、Promotion Failure： Old 区没有足够的空间分配给 Young 区晋升的对象（即使总可用内存足够大） 4、Concurrent Mo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GC">
+<meta property="og:url" content="http://example.com/2020/11/19/GC/index.html">
+<meta property="og:site_name" content="Asura7969 Blog">
+<meta property="og:description" content="GC 算法重点关注的GC case1、**System.gc()**： 手动触发GC操作。 2、CMS： CMS GC 在执行过程中的一些动作，重点关注 CMS Initial Mark 和 CMS Final Remark 两个 STW 阶段 3、Promotion Failure： Old 区没有足够的空间分配给 Young 区晋升的对象（即使总可用内存足够大） 4、Concurrent Mo">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/topimg/202105161049.png">
+<meta property="article:published_time" content="2020-11-19T00:31:57.000Z">
+<meta property="article:modified_time" content="2021-05-16T03:09:20.315Z">
+<meta property="article:author" content="Asura7969">
+<meta property="article:tag" content="java">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/img/topimg/202105161049.png"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="http://example.com/2020/11/19/GC/"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  algolia: undefined,
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: undefined,
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  source: {
+    jQuery: 'https://cdn.jsdelivr.net/npm/jquery@latest/dist/jquery.min.js',
+    justifiedGallery: {
+      js: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/js/jquery.justifiedGallery.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/justifiedGallery/dist/css/justifiedGallery.min.css'
+    },
+    fancybox: {
+      js: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.js',
+      css: 'https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@latest/dist/jquery.fancybox.min.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isanchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'GC',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2021-05-16 11:09:20'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          if (t === 'dark') activateDarkMode()
+          else if (t === 'light') activateLightMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    })(window)</script><meta name="generator" content="Hexo 5.4.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="author-avatar"><img class="avatar-img" src="/img/shanyi.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data"><div class="data-item is-center"><div class="data-item-link"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div></div><div class="data-item is-center"><div class="data-item-link"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div></div><hr/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url('/img/topimg/202105161049.png')"><nav id="nav"><span id="blog_name"><a id="site-name" href="/">Asura7969 Blog</a></span><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> Tags</span></a></div><div class="menus_item"><a class="site-page" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> Categories</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fas fa-link"></i><span> Link</span></a></div><div class="menus_item"><a class="site-page" href="/about/"><i class="fa-fw fas fa-heart"></i><span> About</span></a></div></div><div id="toggle-menu"><a class="site-page"><i class="fas fa-bars fa-fw"></i></a></div></div></nav><div id="post-info"><h1 class="post-title">GC</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-11-19T00:31:57.000Z" title="发表于 2020-11-19 08:31:57">2020-11-19</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2021-05-16T03:09:20.315Z" title="更新于 2021-05-16 11:09:20">2021-05-16</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/java/">java</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title="GC"><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">阅读量:</span><span id="busuanzi_value_page_pv"></span></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="GC-算法"><a href="#GC-算法" class="headerlink" title="GC 算法"></a>GC 算法</h2><h2 id="重点关注的GC-case"><a href="#重点关注的GC-case" class="headerlink" title="重点关注的GC case"></a>重点关注的GC case</h2><p>1、**System.gc()**： 手动触发GC操作。</p>
+<p>2、<strong>CMS</strong>： CMS GC 在执行过程中的一些动作，重点关注 <code>CMS Initial Mark</code> 和 <code>CMS Final Remark</code> 两个 STW 阶段</p>
+<p>3、<strong>Promotion Failure</strong>： Old 区没有足够的空间分配给 Young 区晋升的对象（即使总可用内存足够大）</p>
+<p>4、<strong>Concurrent Mode Failure</strong>： CMS GC 运行期间，Old 区预留的空间不足以分配给新的对象，此时收集器会发生退化，严重影响 GC 性能，下面的一个案例即为这种场景</p>
+<p>5、<strong>GCLocker Initiated GC</strong>： 如果线程执行在 JNI 临界区时，刚好需要进行 GC，此时 <code>GC Locker</code> 将会阻止 GC 的发生，同时阻止其他线程进入 JNI 临界区，直到最后一个线程退出临界区时触发一次 GC</p>
+<h2 id="GC-问题分类："><a href="#GC-问题分类：" class="headerlink" title="GC 问题分类："></a>GC 问题分类：</h2><p><strong>Unexpected GC</strong>： 意外发生的 <code>GC</code>，实际上不需要发生，我们可以通过一些手段去避免</p>
+<ul>
+<li><p><strong>Space Shock</strong>： 空间震荡问题，参见“场景一：动态扩容引起的空间震荡”<br>  <strong>现象</strong>：服务刚刚启动时 GC 次数较多，最大空间剩余很多但是依然发生 GC，一般为 <code>Allocation Failure</code></p>
+<p>  <strong>原因</strong>： JVM 的参数中 <code>-Xms</code> 和 <code>-Xmx</code> 设置的不一致，在初始化时只会初始 <code>-Xms</code> 大小的空间存储信息，每当空间不够用时再向操作系统申请，这样的话必然要进行一次 GC</p>
+<p>  <strong>定位</strong>： 观察 CMS GC 触发时间点 Old/MetaSpace 区的 committed 占比是不是一个固定的值，或者观察内存使用率</p>
+<p>  <strong>策略</strong>：尽量将成对出现的空间大小配置参数设置成固定的</p>
+<ul>
+<li><p><strong>Explicit GC</strong>： 显示执行 GC 问题，参见“场景二：显式 GC 的去与留”</p>
+</li>
+<li><p>*现象**：手动调用了 <code>System.gc</code></p>
+</li>
+<li><p>*原因**： <code>System.gc</code> 会引发一次 STW 的 Full GC，对整个堆做收集，保留 <code>System.gc</code>，会有频繁调用的风险；去掉 <code>System.gc</code>，会发生内存泄漏（主要是堆外内存）</p>
+</li>
+<li><p>*策略**：<code>-XX:+ExplicitGCInvokesConcurrent</code> 和 <code>-XX:+ExplicitGCInvokesConcurrentAndUnloadsClasses</code> 参数来将 <code>System.gc</code> 的触发类型从 Foreground 改为 Background（<code>-XX:+UseAdaptiveSizePolicyWithSystemGC</code>）</p>
+</li>
+</ul>
+</li>
+<li><p>*Partial GC**： 部分收集操作的 GC，只对某些分代/分区进行回收</p>
+</li>
+<li><p><strong>Young GC</strong>： 分代收集里面的 Young 区收集动作，也可以叫做 Minor GC</p>
+<ul>
+<li><strong>ParNew</strong>： Young GC 频繁，参见“场景四：过早晋升”<br>  <strong>现象</strong>：分配速率接近于晋升速率，对象晋升年龄较小（<code>-XX:MaxTenuringThreshold</code>）；Full GC 比较频繁，且经历过一次 GC 之后 Old 区的变化比例非常大  <strong>原因</strong>：Young/Eden 区过小；分配速率过大  <strong>策略</strong>：增大 Young 区，一般情况下 <code>Old</code> 的大小应当为活跃对象的 2~3 倍左右，考虑到浮动垃圾问题最好在 3 倍左右，剩下的都可以分给 Young 区</li>
+</ul>
+</li>
+<li><p><strong>Old GC</strong>： 分代收集里面的 Old 区收集动作，也可以叫做 Major GC，有些也会叫做 Full GC，但其实这种叫法是不规范的，在 CMS 发生 Foreground GC 时才是 Full GC，CMSScavengeBeforeRemark 参数也只是在 Remark 前触发一次 Young GC。</p>
+<ul>
+<li><strong>CMS</strong>： Old GC 频繁，参见“场景五：CMS Old GC 频繁”<br>  <strong>现象</strong>：Old 区频繁的做 `CMS GC，但是每次耗时不是特别长，整体最大 STW 也在可接受范围内，但由于 GC 太频繁导致吞吐下降比较多  <strong>策略</strong>：内存 Dump;分析 Top Component;分析 Unreachable</li>
+<li><strong>CMS</strong>： <code>Old GC</code> 不频繁但单次耗时大，参见“场景六：单次 <code>CMS Old GC</code> 耗时长”<br>  <strong>现象</strong>：CMS GC 单次 STW 最大超过 1000ms，不会频繁发生  <strong>原因</strong>：CMS 在回收的过程中，STW 的阶段主要是 <code>Init Mark</code> 和 <code>Final Remark</code> 这两个阶段，也是导致 CMS Old GC 最多的原因  <strong>策略</strong>：大部分问题都出在 <code>Final Remark</code> 过程;观察详细 GC 日志，找到出问题时 <code>Final Remark</code> 日志</li>
+</ul>
+</li>
+</ul>
+<p><strong>Full GC</strong>： 全量收集的 <code>GC</code>，对整个堆进行回收，<code>STW</code> 时间会比较长，一旦发生，影响较大，也可以叫做 <code>Major GC</code>，参见“场景七：内存碎片&amp;收集器退化”<br>    <strong>现象</strong>：并发的 CMS GC 算法，退化为 Foreground 单线程串行 GC 模式，STW 时间超长，有时会长达十几秒<br>    <strong>原因</strong>：晋升失败（Promotion Failed）；显式 GC；增量收集担保失败；并发模式失败（Concurrent Mode Failure）<br>    <strong>策略</strong>：</p>
+<pre><code>内存碎片： 通过配置 `-XX:UseCMSCompactAtFullCollection=true`，`-XX: CMSFullGCsBeforeCompaction=n` 来控制多少次 Full GC 后进行一次压缩
+
+增量收集： 降低触发 CMS GC 的阈值，即参数 `-XX:CMSInitiatingOccupancyFraction` 的值，让 CMS GC 尽早执行，以保证有足够的连续空间，也减少 Old 区空间的使用大小，另外需要使用 `-XX:+UseCMSInitiatingOccupancyOnly` 来配合使用
+
+浮动垃圾： 视情况控制每次晋升对象的大小，或者缩短每次 CMS GC 的时间，必要时可调节 NewRatio 的值。另外就是使用 -XX:+CMSScavengeBeforeRemark 在过程中提前触发一次 Young GC，防止后续晋升过多对象。
+</code></pre>
+<p><strong>MetaSpace</strong>： 元空间回收引发问题，参见“场景三：<code>MetaSpace</code> 区 <code>OOM</code>”<br>    <strong>现象</strong>：<code>JVM</code> 在启动后或者某个时间点开始，<code>MetaSpace</code> 的已使用大小在持续增长，同时每次 <code>GC</code> 也无法释放，调大 <code>MetaSpace</code> 空间也无法彻底解决。<br>    <strong>原因</strong>：空间不够（<code>-XX:MetaSpaceSize</code>， <code>-XX:MaxMetaSpaceSize</code>）<br>    <strong>策略</strong>：观察详细的类加载和卸载信息</p>
+<p><strong>Direct Memory</strong>： 直接内存（也可以称作为堆外内存）回收引发问题，参见“场景八：堆外内存 <code>OOM</code>”<br>    <strong>现象</strong>：内存使用率不断上升，甚至开始使用 SWAP 内存，通过 top 命令发现 Java 进程的 RES 甚至超过了 <code>-Xmx</code> 的大小<br>    <strong>原因</strong>：代码中有通过 JNI 调用 Native Code 申请的内存没有释放；通过 <code>UnSafe#allocateMemory</code>，<code>ByteBuffer#allocateDirect</code> 主动申请了堆外内存而没有释放<br>    <strong>策略</strong>：JVM 使用 <code>-XX:MaxDirectMemorySize=size</code> 参数来控制可申请的堆外内存的最大值<br><strong>JNI</strong>： 本地 Native 方法引发问题，参见“场景九：JNI 引发的 GC 问题”<br>    <strong>现象</strong>：在 GC 日志中，出现 GC Cause 为 GCLocker Initiated GC<br>    <strong>策略</strong>：添加 -XX+PrintJNIGCStalls 参数，可以打印出发生 JNI 调用时的线程，进一步分析，找到引发问题的 JNI 调用</p>
+<h2 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h2><h3 id="火焰图"><a href="#火焰图" class="headerlink" title="火焰图"></a>火焰图</h3><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2017/09/flame-graph.html">如何读懂火焰图</a></p>
+<p>工具：JProfiler</p>
+<figure class="highlight shell"><figcaption><span>script</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> sudo perf record -F 99 -p [进程id] -g -- sleep 30</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> perf script | ./stackcollapse-perf.pl &gt; out.perf-folded</span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 将 out.perf-folded 下载至本地</span></span></span><br><span class="line"></span><br><span class="line">git clone https://github.com/brendangregg/FlameGraph</span><br><span class="line">cd FlameGraph</span><br><span class="line">./flamegraph.pl out.perf-folded &gt; perf-kernel.svg</span><br><span class="line"><span class="meta"></span></span><br><span class="line"><span class="meta">#</span><span class="bash"><span class="comment"># 查看调用栈百分比</span></span></span><br><span class="line"><span class="meta">$</span><span class="bash"> sudo perf report -n --stdio</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/uber-common/jvm-profiler">uber jvm-profiler 在<strong>spark</strong>或<strong>java</strong>上的应用</a></p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html">http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html</a></p>
+</blockquote>
+<h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><blockquote>
+<p><a target="_blank" rel="noopener" href="https://tech.meituan.com/2020/11/12/java-9-cms-gc.html">https://tech.meituan.com/2020/11/12/java-9-cms-gc.html</a></p>
+</blockquote>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta">文章作者: </span><span class="post-copyright-info"><a href="mailto:undefined">Asura7969</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta">文章链接: </span><span class="post-copyright-info"><a href="http://example.com/2020/11/19/GC/">http://example.com/2020/11/19/GC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="http://example.com" target="_blank">Asura7969 Blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/java/">java</a></div><div class="post_share"><div class="social-share" data-image="/img/topimg/202105161049.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/social-share.js/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/social-share.js/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2020/11/22/Flink%20Window/"><img class="prev-cover" src="/img/topimg/202105161048.png" onerror="onerror=null;src='/img/404-b.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">上一篇</div><div class="prev_info">Flink window</div></div></a></div><div class="next-post pull-right"><a href="/2020/11/17/Flink%20Sql%E8%A7%A3%E6%9E%90(%E4%B8%80)/"><img class="next-cover" src="/img/topimg/202105161050.png" onerror="onerror=null;src='/img/404-b.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">下一篇</div><div class="next_info">Flink Sql解析(一)</div></div></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-info-avatar is-center"><img class="avatar-img" src="/img/shanyi.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-info__name">Asura7969</div><div class="author-info__description"></div></div><div class="card-info-data"><div class="card-info-data-item is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">27</div></a></div><div class="card-info-data-item is-center"><a href="/tags/"><div class="headline">标签</div><div class="length-num">4</div></a></div><div class="card-info-data-item is-center"><a href="/categories/"><div class="headline">分类</div><div class="length-num">7</div></a></div></div><a class="button--animated" id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/Asura7969"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="https://github.com/Asura7969" target="_blank" title="Github"><i class="fab fa-github"></i></a><a class="social-icon" href="mailto:1402357969@qq.com" target="_blank" title="Email"><i class="fas fa-envelope"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn card-announcement-animation"></i><span>公告</span></div><div class="announcement_content">This is my Blog</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#GC-%E7%AE%97%E6%B3%95"><span class="toc-number">1.</span> <span class="toc-text">GC 算法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%87%8D%E7%82%B9%E5%85%B3%E6%B3%A8%E7%9A%84GC-case"><span class="toc-number">2.</span> <span class="toc-text">重点关注的GC case</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GC-%E9%97%AE%E9%A2%98%E5%88%86%E7%B1%BB%EF%BC%9A"><span class="toc-number">3.</span> <span class="toc-text">GC 问题分类：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%88%86%E6%9E%90%E5%B7%A5%E5%85%B7"><span class="toc-number">4.</span> <span class="toc-text">分析工具</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%81%AB%E7%84%B0%E5%9B%BE"><span class="toc-number">4.1.</span> <span class="toc-text">火焰图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">4.2.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-number">5.</span> <span class="toc-text">参考</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2021/05/15/Mini-Batch-%E7%BB%B4%E8%A1%A8-Join/" title="Mini-Batch 维表 Join"><img src="https://i.loli.net/2021/05/16/zAs7ueLGyp5bH1c.jpg" onerror="this.onerror=null;this.src='/img/404-b.jpg'" alt="Mini-Batch 维表 Join"/></a><div class="content"><a class="title" href="/2021/05/15/Mini-Batch-%E7%BB%B4%E8%A1%A8-Join/" title="Mini-Batch 维表 Join">Mini-Batch 维表 Join</a><time datetime="2021-05-15T14:38:45.000Z" title="发表于 2021-05-15 22:38:45">2021-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/27/Flink%20SQL%E8%A7%A3%E6%9E%90(%E4%BA%8C)/" title="Flink Sql解析(二)"><img src="https://i.loli.net/2021/05/16/Uv74ZNjHpG1TKXF.jpg" onerror="this.onerror=null;this.src='/img/404-b.jpg'" alt="Flink Sql解析(二)"/></a><div class="content"><a class="title" href="/2021/04/27/Flink%20SQL%E8%A7%A3%E6%9E%90(%E4%BA%8C)/" title="Flink Sql解析(二)">Flink Sql解析(二)</a><time datetime="2021-04-27T00:31:57.000Z" title="发表于 2021-04-27 08:31:57">2021-04-27</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/21/Flink%20Sql%20LookupJoinWithBykey/" title="Flink SQL LookupJoin With KeyBy"><img src="https://i.loli.net/2021/05/16/FWc9Be1mMPg2Jpy.jpg" onerror="this.onerror=null;this.src='/img/404-b.jpg'" alt="Flink SQL LookupJoin With KeyBy"/></a><div class="content"><a class="title" href="/2021/04/21/Flink%20Sql%20LookupJoinWithBykey/" title="Flink SQL LookupJoin With KeyBy">Flink SQL LookupJoin With KeyBy</a><time datetime="2021-04-21T00:31:57.000Z" title="发表于 2021-04-21 08:31:57">2021-04-21</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/14/Flink%20DataStream%E4%B8%8ETransformation/" title="Flink DataStream与Transformation"><img src="https://i.loli.net/2021/05/16/LvRYbNHsuCDncXy.jpg" onerror="this.onerror=null;this.src='/img/404-b.jpg'" alt="Flink DataStream与Transformation"/></a><div class="content"><a class="title" href="/2021/04/14/Flink%20DataStream%E4%B8%8ETransformation/" title="Flink DataStream与Transformation">Flink DataStream与Transformation</a><time datetime="2021-04-14T00:31:57.000Z" title="发表于 2021-04-14 08:31:57">2021-04-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2021/04/01/SparkStreaming/" title="SparkStreaming"><img src="https://i.loli.net/2021/05/16/zGuOVQp92kBit6y.jpg" onerror="this.onerror=null;this.src='/img/404-b.jpg'" alt="SparkStreaming"/></a><div class="content"><a class="title" href="/2021/04/01/SparkStreaming/" title="SparkStreaming">SparkStreaming</a><time datetime="2021-04-01T00:31:57.000Z" title="发表于 2021-04-01 08:31:57">2021-04-01</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2021 By Asura7969</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><button id="go-up" type="button" title="回到顶部"><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><div class="js-pjax"></div><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
