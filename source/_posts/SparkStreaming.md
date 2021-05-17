@@ -3,11 +3,11 @@ title: SparkStreaming
 date: 2021-04-01 08:31:57
 tags: spark
 categories: spark
-cover: https://i.loli.net/2021/05/16/zGuOVQp92kBit6y.jpg
+cover: /img/topimg/20210515223344.jpg
 ---
 
 ### SparkStreaming
-![SparkStreaming.png](http://ww1.sinaimg.cn/large/b3b57085gy1gmboz6zmimj21ao0v218l.jpg)
+![SparkStreaming.png](/img/blog/SparkStreaming.png)
 
 
 

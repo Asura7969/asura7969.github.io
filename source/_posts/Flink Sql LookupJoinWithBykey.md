@@ -3,7 +3,7 @@ title: Flink SQL LookupJoin With KeyBy
 date: 2021-04-21 08:31:57
 tags: flink
 categories: sql
-cover: https://i.loli.net/2021/05/16/FWc9Be1mMPg2Jpy.jpg
+cover: /img/topimg/20210515223410.jpg
 ---
 
 # 背景
@@ -13,17 +13,17 @@ cover: https://i.loli.net/2021/05/16/FWc9Be1mMPg2Jpy.jpg
 [Flink SQL 在字节跳动的优化与实践](https://segmentfault.com/a/1190000039084980)
 
 先看下实现后的效果图:
-![flink-sql-lookupJoinNoKeyBy.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpr4yvibdpj21o407w76t.jpg)
+![flink-sql-lookupJoinNoKeyBy.png](/img/blog/flink-sql-lookupJoinNoKeyBy.png)
 
-![flink-sql-lookupJoinWithKeyBy.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpr4z7a5dyj21mz089q5h.jpg)
+![flink-sql-lookupJoinWithKeyBy.png](/img/blog/flink-sql-lookupJoinWithKeyBy.png)
 
 
 # 实现思路
 ## Flink sql 整个的执行流程梳理
 
-![PlannerBase.png](http://ww1.sinaimg.cn/large/b3b57085gy1gprqev1t36j20vz0hgdib.jpg)
+![PlannerBase.png](/img/blog/FlinkStreamProgram.png)
 
-![1-1.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpr54gtooij20kp0az764.jpg)
+![FlinkStreamProgram.png](/img/blog/FlinkStreamProgram.png)
 
 ## 在哪实现(where)?
 实现的地方很多,图1-1 中最引人注意的是 `TEMPORAL_JOIN_REWRITE`(至少我是这么想的...), 但后来实现过程中由于对 `calcite API` 不熟悉,实在无奈,只能另辟蹊径了。
@@ -33,16 +33,16 @@ cover: https://i.loli.net/2021/05/16/FWc9Be1mMPg2Jpy.jpg
 ## 怎么实现(how)?
 接下来就是依葫芦画瓢了
 
-![flink-sql 添加KeyByLookupJoinRule.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpr52j7xksj21010x27d7.jpg)
+![flink-sql 添加KeyByLookupJoinRule.png](/img/blog/KeyByLookupJoinRule.png)
 
 [KeyByLookupRule 实现](https://github.com/Asura7969/asuraflink/blob/main/asuraflink-sql/src/main/scala/com/asuraflink/sql/rule/KeyByLookupRule.scala)
 
 由于实现过程需要 `temporalTable` 和 `calcOnTemporalTable`, 而 **CommonLookupJoin** 中并没有获取这两个对象的方法,因此只能自己手动添加了
-![CommonLookupJoin add method.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpr5a1fx8ej213j0n5grh.jpg)
+![CommonLookupJoin add method.png](/img/blog/CommonLookupJoin.png)
 
 ## 如何校验?
 本次校验就仅对 **JdbcLookupTableITCase** 该测试类测试
-![flink join keyby.png](http://ww1.sinaimg.cn/large/b3b57085gy1gprpv96eutj20u00m70vf.jpg)
+![flink join keyby.png](/img/blog/flinkLookupJoinWithKeyByTest.png)
 
 # 注意事项
 * 本次实践基于flink1.12.0, 需要修改源码

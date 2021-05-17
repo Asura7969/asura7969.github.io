@@ -3,7 +3,7 @@ title: FLP-30 Unified Catalog APIs译文
 date: 2021-03-07 08:31:57
 tags: flink
 categories: flink
-cover: https://i.loli.net/2021/05/16/Qfg2vpysuoJx69A.png
+cover: /img/topimg/202105161055.png
 ---
 
 
@@ -20,7 +20,7 @@ Hive Metastore集成有两个方面：1.使Hive的元对象（如表和视图）
 在当前的Flink代码库中，已经为外部目录定义了一组接口。 但是，API尚不稳定，需要完善我们的工作。
 更改在以下类层次结构中得到最好的体现：
 
-![image1.png](http://ww1.sinaimg.cn/large/b3b57085gy1gob5usr9a1j20hb0avmxo.jpg)
+![FLIP30.png](/img/blog/FLIP30.png)
 
 在图1中，ReadableCatalog，ReadableWritableCatalog和CatalogManager是我们正在定义的主要接口。 其他仅仅是实现或接口调用程序。 
 

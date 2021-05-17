@@ -3,17 +3,17 @@ title: Flink Sql解析(二)
 date: 2021-04-27 08:31:57
 tags: flink
 categories: sql
-cover: https://i.loli.net/2021/05/16/Uv74ZNjHpG1TKXF.jpg
+cover: /img/topimg/20210515223338.jpg
 ---
 
 
 # Flink Sql解析
 
-![Flink-sql.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpy52z5xqtj20jl0c5jty.jpg)
+![Flink-sql.png](/img/blog/Flink-sql.png)
 
 
 ## Flink sql执行过程
-![flink-sql执行计划.png](http://ww1.sinaimg.cn/large/b3b57085gy1gpy54rdyzgj21120djgmo.jpg)
+![flink-sql执行计划.png](/img/blog/flink-sql执行计划.png)
 
 
 ### SQL -> SqlNode

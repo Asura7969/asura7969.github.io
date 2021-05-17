@@ -3,17 +3,17 @@ title: Netty在Flink中的应用
 date: 2021-03-29 08:31:57
 tags: flink
 categories: flink
-cover: https://i.loli.net/2021/05/16/USDe9tZmuqTNGRo.jpg
+cover: /img/topimg/20210515223347.jpg
 ---
 
 
 # 使用Netty定义Client与Server端的协议
 
 ## client 端协议
-![flink-client-netty.png](http://ww1.sinaimg.cn/large/b3b57085gy1gp0jjef7d5j214e0qidn5.jpg)
+![flink-client-netty.png](/img/blog/flink-client-netty.png)
 
 ## server 端协议
-![flink-server-netty.png](http://ww1.sinaimg.cn/large/b3b57085gy1gp0jkjgt86j213a0redmq.jpg)
+![flink-server-netty.png](/img/blog/flink-server-netty.png)
 
 > org.apache.flink.runtime.io.network.netty.NettyProtocol
 
@@ -158,5 +158,5 @@ cover: https://i.loli.net/2021/05/16/USDe9tZmuqTNGRo.jpg
 
 ```
 
-![flink-通信栈.png](http://ww1.sinaimg.cn/large/b3b57085gy1gp1ov646qdj20q60ecmz4.jpg)
+![flink-通信栈.png](/img/blog/flink-通信栈.png)
 

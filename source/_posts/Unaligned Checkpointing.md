@@ -3,7 +3,7 @@ title: Unaligned Checkpointing
 date: 2021-03-08 08:31:57
 tags: flink
 categories: flink
-cover: https://i.loli.net/2021/05/16/K1d5AkHxIVXagZU.png
+cover: /img/topimg/202105161056.png
 ---
 
 

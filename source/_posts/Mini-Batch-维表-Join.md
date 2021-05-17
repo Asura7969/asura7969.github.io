@@ -3,7 +3,7 @@ title: Mini-Batch 维表 Join
 date: 2021-05-15 22:38:45
 tags: flink
 categories: sql
-cover: https://i.loli.net/2021/05/16/zAs7ueLGyp5bH1c.jpg
+cover: /img/topimg/20210515223350.jpg
 ---
 
 # Mini-Batch 维表 Join
