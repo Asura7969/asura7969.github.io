@@ -7,7 +7,7 @@ cover: /img/topimg/202105161045.png
 ---
 
 # 扩展format
-![expand_flink_sql_format_2.png](http://ww1.sinaimg.cn/large/b3b57085gy1gmdzcyhqk5j20wg1664gq.jpg)
+![expand_flink_sql_format_2.png](/img/blog/expand_flink_sql_format_2.png)
 
 **输入数据格式**
 
@@ -18,7 +18,7 @@ ANALYSIS,2020-08-06 17:21:24.066,2,{"condition":{"mail":"zhangsan@qq.com","guid"
 
 **解析格式**
 
-![expand_flink_sql_format_3.png](http://ww1.sinaimg.cn/large/b3b57085gy1gmdzg3jsymj20ra0dodmb.jpg)
+![expand_flink_sql_format_3.png](/img/blog/expand_flink_sql_format_3.png)
 
 **源码**
 

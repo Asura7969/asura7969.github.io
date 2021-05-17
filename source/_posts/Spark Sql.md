@@ -11,7 +11,7 @@ cover: /img/topimg/202105161052.png
 
 ![spark sql](https://databricks.com/wp-content/uploads/2015/04/Screen-Shot-2015-04-12-at-8.41.26-AM.png)
 
-![LogicalPlan.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk4adpqbbjj20ry0hggmu.jpg)
+![LogicalPlan.png](/img/blog/LogicalPlan.png)
 
 `Analysis`
 
@@ -23,7 +23,7 @@ cover: /img/topimg/202105161052.png
 
 基于规则优化,其中包含谓词下推、列裁剪、常亮折叠等。利用*Rule*(规则)将*Resolved Logical Plan*解析成*Optimized Logical Plan*,同样是由*RuleExecutor*执行
 
-![PhysicalPlan.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk4aesi38sj20r60abt9c.jpg)
+![PhysicalPlan.png](/img/blog/PhysicalPlan.png)
 
 `Physical Planning`
 
@@ -67,7 +67,7 @@ trait LogicalPlanStats { self: LogicalPlan =>
 }
 ```
 如果开启**CBO**,在**Optimize**阶段,会通过收集的表信息对InnerJoin sql进行优化,如下图:
-![CBO代码截图.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkdhhs318gj20yp0mg0z0.jpg)
+![CBO代码截图.png](/img/blog/CBO代码截图.png)
 
 `Code Generation`
 生成java字节码
@@ -106,7 +106,7 @@ cost = weight * cardinality + (1.0 - weight) * size
 
 ## Spark Join
 ### BroadcastJoin
-![spark-broadcastjoin.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk3ljsv6hbj20n30coaaz.jpg)
+![spark-broadcastjoin.png](/img/blog/spark-broadcastjoin.png)
 #### 匹配条件
 * 等值连接
 * 是否有提示(hit)
@@ -120,7 +120,7 @@ cost = weight * cardinality + (1.0 - weight) * size
 将broadcat的数据逐行hash,存储到**BytesToBytesMap**,遍历**stream**表,逐行取出hash匹配,找出符合条件的数据
 
 ### Shuffle Hash Join
-![Shuffle Hash Join.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk3lo45m3sj20oc085aay.jpg)
+![Shuffle Hash Join.png](/img/blog/Shuffle_Hash_Join.png)
 #### 匹配条件
 * 等值连接
 * 是否优先执行SMJ(SparkConf配置) && 满足join类型 && 表大小 < bhj阈值 * 默认shuffle分区数(200) && 小表大小 * 3 <= 大表大小 `||` leftkey的类型不能被排序
@@ -130,7 +130,7 @@ cost = weight * cardinality + (1.0 - weight) * size
 * hash join:对每个分区中的数据进行join操作,现将小表分区构造一张Hash表(HashedRelation),然后根据大表分区中的记录的key值进行匹配
 
 ### SMJ
-![spark-smj.jpg](http://ww1.sinaimg.cn/large/b3b57085gy1gk36a7fl00j20nv0cb0tl.jpg)
+![spark-smj.jpg](/img/blog/spark-smj.png)
 #### 匹配条件
 * 等值连接
 * leftkey的类型能被排序
@@ -142,13 +142,13 @@ cost = weight * cardinality + (1.0 - weight) * size
 
 ## Spark 连接 Hive
 
-![HiveThriftServer2启动流程.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkf7r39yi3j21gs0u2won.jpg)
+![HiveThriftServer2启动流程.png](/img/blog/HiveThriftServer2启动流程.png)
 
 最后sql的执行由**SparkSQLOperationManager**中创建的**SparkExecuteStatementOperation**执行并返回结果
 
 **HiveThriftServer2启动构建对象**
 
-![HiveThritfServer2-main.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkf7ks8yk3j21wi16i4qp.jpg)
+![HiveThritfServer2-main.png](/img/blog/HiveThritfServer2-main.png)
 
 
 ## 谓词下推源码

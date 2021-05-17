@@ -208,7 +208,7 @@ private[spark] class Client(
 * receive方法:创建Executor对象
 
 
-![spark on yarn](https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=1495056033,1745168161&fm=15&gp=0.jpg)
+![spark-on-yarn.png](/img/blog/spark-on-yarn.png)
 
 
 
@@ -223,7 +223,7 @@ TODO:
 * 后面会调用 *setupAndStartListenerBus* 方法，启动**queue**,并把**event**放到**queue**中
 * `AsyncEventQueue.dispatch`启动后，循环调用*postToAll*方法,把阻塞队列里的**event**发送给**listener**
 
-![listenerBus工作原理.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkzzhgzk2xj21dc0mwguf.jpg)
+![listenerBus工作原理.png](/img/blog/listenerBus工作原理.png)
 ### SparkContext
 
 ```scala

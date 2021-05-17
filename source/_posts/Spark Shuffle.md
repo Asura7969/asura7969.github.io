@@ -236,11 +236,11 @@ driver端初始化`ShuffleWriteProcessor`,executors端在每个`ShuffleMapTask`�
   }
 ```
 
-![spark-bypassMergeSortShuffleWriter.jpg](http://ww1.sinaimg.cn/large/b3b57085gy1gk4wfih9eyj20xc0lgaay.jpg)
+![spark-bypassMergeSortShuffleWriter.png](/img/blog/spark-bypassMergeSortShuffleWriter.png)
 
 ### org.apache.spark.shuffle.sort.SortShuffleWriter
 
-![](https://i2.wp.com/0x0fff.com/wp-content/uploads/2015/08/spark_sort_shuffle.png?resize=1024%2C459&ssl=1)
+![SortShuffleWriter.png](/img/blog/SortShuffleWriter.png)
 
 每个map task会现在内存做排序,内存达到阈值,会生spill生成一个小文件,最终map task结束后会对所有小文件做一个类似于多路归并的排序,生成shuffle文件,和一个index文件
 
@@ -291,7 +291,7 @@ driver端初始化`ShuffleWriteProcessor`,executors端在每个`ShuffleMapTask`�
 最后合并文件时,会把所有spill文件 和 内存中的数据组成*Iterator*,放到一个优先级队列,此优先级队列把每个*Iterator*的第一个值比较,
 之后从这个Queue中拿值,判断*K*是否相等,若相等,则继续合并值
 
-![spark-mapShuffle-combine.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk5fkoi9avj20xy0c0mxo.jpg)
+![spark-mapShuffle-combine.png](/img/blog/spark-mapShuffle-combine.png)
 
 **org.apache.spark.util.collection.ExternalSorter**
 ```scala
@@ -578,7 +578,7 @@ driver端初始化`ShuffleWriteProcessor`,executors端在每个`ShuffleMapTask`�
   }
 ```
 
-![spark-sortShuffleWriter.jpg](http://ww1.sinaimg.cn/large/b3b57085gy1gk4wenazswj20xc0rmwfs.jpg)
+![spark-sortShuffleWriter.png](/img/blog/spark-sortShuffleWriter.png)
 
 ### org.apache.spark.shuffle.sort.UnsafeShuffleWriter
 
@@ -672,7 +672,7 @@ driver端初始化`ShuffleWriteProcessor`,executors端在每个`ShuffleMapTask`�
     mapStatus = MapStatus$.MODULE$.apply(blockManager.shuffleServerId(), partitionLengths);
   }
 ```
-![UnsafeWrite.png](http://ww1.sinaimg.cn/large/b3b57085gy1gl0klpbcprj21bi12owrq.jpg)
+![UnsafeWrite.png](/img/blog/UnsafeWrite.png)
 
 **org.apache.spark.shuffle.sort.ShuffleExternalSorter**
 ```java
@@ -707,7 +707,7 @@ public void insertRecord(Object recordBase, long recordOffset, int length, int p
 ```
 
 
-![tungsten-sort shuffle write流程简图](https://i0.wp.com/0x0fff.com/wp-content/uploads/2015/08/spark_tungsten_sort_shuffle.png?resize=1024%2C457&ssl=1)
+![tungsten-sort shuffle_write流程简图.png](/img/blog/tungsten-sort shuffle_write流程简图.png)
 
 `Resolver实现`
 * **org.apache.spark.shuffle.IndexShuffleBlockResolver**

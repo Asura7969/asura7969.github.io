@@ -6,15 +6,15 @@ categories: rpc
 cover: /img/topimg/202105161051.png
 ---
 
-![spark-rpc.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkzdhy8l4sj21a00ukk1g.jpg)
+![spark-rpc.png](/img/blog/spark-rpc.png)
 
 # Dispatcher
-![Dispatcher.png](http://ww1.sinaimg.cn/large/b3b57085gy1gka2xf3wjwj20uv0ll782.jpg)
+![Dispatcher.png](/img/blog/Dispatcher.png)
 
-![dispatcher方法.png](http://ww1.sinaimg.cn/large/b3b57085gy1gka29ef2btj20i40j041h.jpg)
+![dispatcher方法.png](/img/blog/dispatcher方法.png)
 
 # Rpc客户端发送请求
-![Rpc客户端发送请求.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkb0w7jh84j21gu12i1g0.jpg)
+![Rpc客户端发送请求.png](/img/blog/Rpc客户端发送请求.png)
 
 
 
@@ -22,4 +22,4 @@ cover: /img/topimg/202105161051.png
 
 用于跟踪map任务的输出状态
 
-![MapOutputTrackerMaster.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkb8286napj20kn0mqwnh.jpg)
+![MapOutputTrackerMaster.png](/img/blog/MapOutputTrackerMaster.png)

@@ -25,7 +25,7 @@ cover: /img/topimg/202105161047.png
 BinaryExternalSorter
 分别包含3个异步线程(sort, spill, merger)，三个线程通过circularQueues实现通信
 
-![CircularQueues.png](http://ww1.sinaimg.cn/large/b3b57085gy1glxqec1pubj20y20mkguc.jpg)
+![CircularQueues.png](/img/blog/CircularQueues.png)
 
 **SortingThread**
 ```java
@@ -368,7 +368,7 @@ write方法较为简单,先获取空的**buffer**,把**RowData**写到**buffer**
     }
 ```
 **SortMergeInnerJoinIterator**
-![nextInnerJoin.png](http://ww1.sinaimg.cn/large/b3b57085gy1glxvch32b9j217m114wvj.jpg)
+![nextInnerJoin.png](/img/blog/nextInnerJoin.png)
 
 
 

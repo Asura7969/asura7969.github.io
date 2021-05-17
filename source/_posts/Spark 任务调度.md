@@ -35,5 +35,5 @@ cover: /img/topimg/202105161053.png
 
 
 ### TaskSchedulerImpl调度流程
-![TaskSchedulerImpl调度流程.png](http://ww1.sinaimg.cn/large/b3b57085gy1gk9oxgwfcuj20sc0jg0un.jpg)
+![TaskSchedulerImpl调度流程.png](/img/blog/TaskSchedulerImpl调度流程.png)
 

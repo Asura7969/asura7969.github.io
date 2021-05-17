@@ -36,7 +36,7 @@ stream
 ## Evictor
 可以在执行window trigger之前或之后对window中的数据过滤操作
 
-![evictor.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkxnrhj658j20wy08q0wq.jpg)
+![evictor.png](/img/blog/evictor.png)
 
 ## Trigger
 用来判断一个窗口是否需要被触发
@@ -47,7 +47,7 @@ TriggerResult的四种状态:
 * PURGE
 * FIRE_AND_PURGE
 
-![trigger.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkxnu1kqysj20ti0o6n98.jpg)
+![trigger.png](/img/blog/trigger.png)
 
 ## Time
 在 Flink 中 Time  可以分为三种 Event-Time, Processing-Time 以及 Ingestion-Time
@@ -58,17 +58,17 @@ TriggerResult的四种状态:
 生成watermark的方式有两种,一种是周期性生成,另一种是按特定方式(用户自定义方式)生成。
 
 ## Window
-![window-mechanics.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkxnn4zh0sj212t0nfk5s.jpg)
+![window-mechanics.png](/img/blog/window-mechanics.png)
 
 Flink window的内部实现
 
 **org.apache.flink.streaming.runtime.operators.windowing.WindowOperator**
 
-![flink window内部实现.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkxngxgblej215o0zqh1c.jpg)
+![flink window内部实现.png](/img/blog/window内部实现.png)
 
 
 ### TimeManager
 
 ### TimerService
 
-![timerservice.png](http://ww1.sinaimg.cn/large/b3b57085gy1gkxo4t4v9pj217c0awgrf.jpg)
+![timerservice.png](/img/blog/timerservice.png)

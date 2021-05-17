@@ -20,7 +20,7 @@ StreamGraph经过优化后生成JobGraph，提交给**JobManager**数据结构�
 * IntermediateDataSet：表示JobVertex的输出，即经过operator处理产生的数据集。producer是JobVertex，consumer是JobEdge。
 * JobEdge：代表了job graph中的一条数据传输通道。source是IntermediateDataSet，target是JobVertex。即数据通过JobEdge由IntermediateDataSet传递给目标JobVertex。
 
-![Graph](http://img3.tbcdn.cn/5476e8b07b923/TB1tA_GJFXXXXapXFXXXXXXXXXX)
+![Graph](/img/blog/Graph.png)
 
 #### ExecutionGraph
 
