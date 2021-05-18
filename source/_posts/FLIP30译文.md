@@ -2,7 +2,7 @@
 title: FLP-30 Unified Catalog APIs译文
 date: 2021-03-07 08:31:57
 tags: flink
-categories: flink
+categories: 译文
 cover: /img/topimg/202105161055.png
 ---
 
@@ -74,7 +74,7 @@ Hive Metastore集成有两个方面：1.使Hive的元对象（如表和视图）
 * 添加了与视图/ UDF相关的读取 
 * 定义表和视图之间的关系（见图2） 
 
-![image2.png](http://ww1.sinaimg.cn/large/b3b57085gy1gob5yaau1sj20hc0bjdg3.jpg)
+![flip30-iface.png](/img/blog/flip30-iface.png)
 
 视图是表的一种特定类型。 更具体地说，视图是通过SQL语句在其他表和/或视图之上定义的虚拟表。
 
