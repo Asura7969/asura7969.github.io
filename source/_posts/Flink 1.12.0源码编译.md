@@ -3,7 +3,7 @@ title: Flink 1.12.0源码编译
 date: 2021-03-07 08:31:57
 tags: flink
 categories: flink
-cover: https://i.loli.net/2021/05/16/7ySFcK6aLv1MBZm.png
+cover: /img/topimg/202106050953.png
 ---
 
 

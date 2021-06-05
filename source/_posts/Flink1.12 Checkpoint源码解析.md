@@ -3,7 +3,7 @@ title: Flink1.12 Checkpoint源码解析
 date: 2021-03-25 08:31:57
 tags: flink
 categories: flink
-cover: https://i.loli.net/2021/05/16/LcIghOnCaFf9TV8.png
+cover: /img/topimg/202106050954.png
 ---
 
 # Checkpoint
