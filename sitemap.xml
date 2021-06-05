@@ -2,6 +2,41 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asura7969.github.io/2021/06/05/Flink-Sql-%E4%BE%A7%E6%B5%81%E8%BE%93%E5%87%BA-%E4%B8%80/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2021/06/05/Flink-Sql-%E4%BE%A7%E6%B5%81%E8%BE%93%E5%87%BA-%E4%BA%8C/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2021/03/25/Flink1.12%20Checkpoint%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2021/03/07/Flink%201.12.0%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2021/04/14/Flink%20DataStream%E4%B8%8ETransformation/</loc>
+    
+    <lastmod>2021-06-05</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asura7969.github.io/2021/03/06/Flink%20Stream%E6%96%87%E4%BB%B6%E5%8E%8B%E7%BC%A9%E8%AF%91%E6%96%87/</loc>
     
     <lastmod>2021-05-18</lastmod>
@@ -135,14 +170,14 @@
   </url>
   
   <url>
-    <loc>https://asura7969.github.io/google6c8b8b2f06c33be3.html</loc>
+    <loc>https://asura7969.github.io/baidu_verify_code-ltbp5fZA9H.html</loc>
     
     <lastmod>2021-05-17</lastmod>
     
   </url>
   
   <url>
-    <loc>https://asura7969.github.io/baidu_verify_code-ltbp5fZA9H.html</loc>
+    <loc>https://asura7969.github.io/google6c8b8b2f06c33be3.html</loc>
     
     <lastmod>2021-05-17</lastmod>
     
@@ -184,7 +219,7 @@
   </url>
   
   <url>
-    <loc>https://asura7969.github.io/2021/03/25/Flink1.12%20Checkpoint%E6%BA%90%E7%A0%81%E8%A7%A3%E6%9E%90/</loc>
+    <loc>https://asura7969.github.io/2021/02/21/Flink%E6%96%B9%E6%A1%88%E8%AE%B0%E5%BD%95/</loc>
     
     <lastmod>2021-05-17</lastmod>
     
@@ -198,21 +233,7 @@
   </url>
   
   <url>
-    <loc>https://asura7969.github.io/2021/02/21/Flink%E6%96%B9%E6%A1%88%E8%AE%B0%E5%BD%95/</loc>
-    
-    <lastmod>2021-05-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/2021/03/07/Flink%201.12.0%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
-    
-    <lastmod>2021-05-17</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/2021/04/14/Flink%20DataStream%E4%B8%8ETransformation/</loc>
+    <loc>https://asura7969.github.io/2021/03/04/Flink%20Checkpoint%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B/</loc>
     
     <lastmod>2021-05-17</lastmod>
     
@@ -225,17 +246,10 @@
     
   </url>
   
-  <url>
-    <loc>https://asura7969.github.io/2021/03/04/Flink%20Checkpoint%E6%81%A2%E5%A4%8D%E6%B5%81%E7%A8%8B/</loc>
-    
-    <lastmod>2021-05-17</lastmod>
-    
-  </url>
-  
 
   <url>
     <loc>https://asura7969.github.io/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -243,28 +257,28 @@
   
   <url>
     <loc>https://asura7969.github.io/tags/flink/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/java/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/spark/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/python/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -273,56 +287,56 @@
   
   <url>
     <loc>https://asura7969.github.io/categories/flink/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/sql/</loc>
-    <lastmod>2021-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/java/</loc>
-    <lastmod>2021-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/rpc/</loc>
-    <lastmod>2021-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/spark/</loc>
-    <lastmod>2021-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/python/</loc>
-    <lastmod>2021-05-18</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/shuffle/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/%E8%AF%91%E6%96%87/</loc>
-    <lastmod>2021-05-18</lastmod>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/java/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/rpc/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/spark/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/python/</loc>
+    <lastmod>2021-06-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/shuffle/</loc>
+    <lastmod>2021-06-05</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
