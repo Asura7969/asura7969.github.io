@@ -151,11 +151,12 @@ import org.apache.flink.table.api.{DataTypes, TableConfig, TableSchema}
 
   def buildRelNodeBlockPlan(
       sinkNodes: Seq[RelNode],
+      planner: PlannerBase,
       config: TableConfig): Seq[RelNodeBlock] = {
     require(sinkNodes.nonEmpty)
 
-    // 新添加方法, 解析 project中有关side_output 的提示信息, 最后会返回多个RelNode
-    val newSinkNodes = expandProject(sinkNodes, config)
+    // TODO: 新添加方法, 解析 project中有关side_output 的提示信息, 最后会返回多个RelNode
+    val newSinkNodes = expandProject(sinkNodes, planner)
 
     // expand QueryOperationCatalogViewTable in TableScan
     val shuttle = new ExpandTableScanShuttle
@@ -172,18 +173,18 @@ import org.apache.flink.table.api.{DataTypes, TableConfig, TableSchema}
   }
 
 
-
   def expandProject(sinkNodes: Seq[RelNode],
-                    config: TableConfig): Seq[RelNode] = {
+                    planner: PlannerBase): Seq[RelNode] = {
     // 提取 提示信息 以及 project
-    sinkNodes.map(expandHintsOfSideOutput)
+    sinkNodes.map(node => expandHintsOfSideOutput(node, planner))
       .map(t => Seq(t._1).++(t._2)).flatMap(_.toList)
 
 //    sinkNodes.map(expandHintsOfSideOutput)
 //      .map(t => Seq().++(t._2)).flatMap(_.toList)
   }
 
-  def expandHintsOfSideOutput(relNode: RelNode): (RelNode, Seq[RelNode]) = {
+  def expandHintsOfSideOutput(relNode: RelNode,
+                              planner: PlannerBase): (RelNode, Seq[RelNode]) = {
     import scala.collection.JavaConverters._
 
     relNode match {
@@ -193,12 +194,12 @@ import org.apache.flink.table.api.{DataTypes, TableConfig, TableSchema}
           .filter(_.hintName.equals(FlinkHints.HINT_SIDE_OUT_PUT))
           .map(_.kvOptions.asScala)
         if (tableNames.nonEmpty) {
-          (project.withHints(Collections.emptyList()), createSink(tableNames, project))
+          (project.withHints(Collections.emptyList()), createSink(tableNames, project, planner))
         } else (project, Seq.empty)
 
       case _ =>
         if(!relNode.getInputs.isEmpty) {
-          val tuples = relNode.getInputs.asScala.map(expandHintsOfSideOutput)
+          val tuples = relNode.getInputs.asScala.map(node => expandHintsOfSideOutput(node, planner))
           val newRelNode = relNode.copy(relNode.getTraitSet, new util.ArrayList[RelNode](tuples.map(_._1).asJava))
           val extractRelNodes = tuples.map(_._2).flatMap(_.toList)
           (newRelNode, extractRelNodes)
@@ -207,7 +208,9 @@ import org.apache.flink.table.api.{DataTypes, TableConfig, TableSchema}
     }
   }
 
-  def createSink(tables: Seq[mutable.Map[String, String]], project: LogicalProject): Seq[LogicalLegacySink] = {
+  def createSink(tables: Seq[mutable.Map[String, String]],
+                 project: LogicalProject,
+                 planner: PlannerBase): Seq[LogicalLegacySink] = {
     val rexBuilder = project.getCluster.getRexBuilder
     val context = project.getCluster.getPlanner.getContext.unwrap(classOf[FlinkContext])
     val manager = context.getCatalogManager
@@ -243,14 +246,34 @@ import org.apache.flink.table.api.{DataTypes, TableConfig, TableSchema}
                 project.getInput.getRowType)
 
               val sink = new StreamSelectTableSink(FlinkTypeFactory.toTableSchema(relDataType))
-              // sink.getSelectResultProvider
-              
-              // TODO: 可根据 table信息实现多种 Sink
+              planner.getExecEnv.addProvider(sink.getSelectResultProvider)
+
+              /**
+               * TODO: 可根据 table信息实现多种 Sink
+               *
+               * 此处的实现会报错, 没有在 StreamSelectTableSink 中设置 jobClient
+               * 可在 StreamExecutionEnvironment 中添加 List，存储 sideOutput 的 sink provider,
+               * <code>
+               *  public final List<Object> sinkProvider = new ArrayList<>();
+               *
+               *  public void addProvider(Object provider) {
+               *    sinkProvider.add(provider);
+               *  }
+               * </code>
+               * 然后在 TableEnvironmentImpl 中获取 provider
+               * <code>
+               *   execEnv.getSinkProvide().forEach(provide -> ((SelectResultProvider)provide).setJobClient(jobClient));
+               * </code>
+               */
               LogicalLegacySink.create(newProject, sink, "collect", ConnectorCatalogTable.sink(sink, false))
+              //  LogicalLegacySink.create(newProject,
+              //  // new StreamSelectTableSink(sinkSchema),
+              //    new DataStreamTableSink(sinkSchema, typeInfo, false, false),
+              //    "sideOutputSink", catalogTable)
           }
       }
     }
-  }
+  }.asJava
 
   def toOutputTypeInformation(
       context: FlinkContext,
