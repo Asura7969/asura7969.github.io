@@ -2,6 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asura7969.github.io/2021/08/15/Flink-RPC/</loc>
+    
+    <lastmod>2022-02-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2022/02/17/kakafka%E5%8D%87%E7%BA%A7-Security/</loc>
+    
+    <lastmod>2022-02-17</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/2022/02/17/kafka-SCRAM-ACL%E9%85%8D%E7%BD%AE/</loc>
+    
+    <lastmod>2022-02-17</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asura7969.github.io/2021/04/21/Flink%20Sql%20LookupJoinWithBykey/</loc>
     
     <lastmod>2021-05-17</lastmod>
@@ -228,7 +249,7 @@
 
   <url>
     <loc>https://asura7969.github.io/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -236,28 +257,35 @@
   
   <url>
     <loc>https://asura7969.github.io/tags/flink/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/java/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/spark/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/tags/kafka/</loc>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/python/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -266,49 +294,56 @@
   
   <url>
     <loc>https://asura7969.github.io/categories/flink/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/sql/</loc>
-    <lastmod>2021-05-17</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/java/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/rpc/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/java/</loc>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/spark/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/kafka/</loc>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/python/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/shuffle/</loc>
-    <lastmod>2021-05-17</lastmod>
+    <lastmod>2022-02-17</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
