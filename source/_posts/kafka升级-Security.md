@@ -1,5 +1,5 @@
 ---
-title: kakafka升级-Security
+title: kafka升级-Security
 date: 2022-02-17 21:11:12
 tags: kafka
 categories: kafka
