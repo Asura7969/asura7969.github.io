@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://asura7969.github.io/2022/10/13/Deltalake-CDF-CDC/</loc>
+    
+    <lastmod>2022-10-13</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://asura7969.github.io/2022/02/17/kafka%E5%8D%87%E7%BA%A7-Security/</loc>
     
     <lastmod>2022-02-18</lastmod>
@@ -291,7 +298,7 @@
 
   <url>
     <loc>https://asura7969.github.io/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
@@ -299,35 +306,42 @@
   
   <url>
     <loc>https://asura7969.github.io/tags/flink/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/java/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/spark/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/kafka/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/tags/python/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/tags/delta/</loc>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
@@ -336,63 +350,70 @@
   
   <url>
     <loc>https://asura7969.github.io/categories/flink/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/sql/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/%E8%AF%91%E6%96%87/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/rpc/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/java/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/spark/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/kafka/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/python/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/shuffle/</loc>
-    <lastmod>2022-02-18</lastmod>
+    <lastmod>2022-10-13</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/%E6%95%B0%E6%8D%AE%E6%B9%96/</loc>
+    <lastmod>2022-10-13</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
