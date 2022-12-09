@@ -1,6 +1,6 @@
 ---
-title: Flink 1.12.0源码编译
-date: 2021-03-07 08:31:57
+title: Flink 1.16.0源码编译
+date: 2022-12-09 22:17:57
 tags: flink
 categories: flink
 cover: /img/topimg/202106050953.png
@@ -12,7 +12,7 @@ cover: /img/topimg/202106050953.png
 
 ```shell
 > scala -version
-Scala code runner version 2.12.12 -- Copyright 2002-2020, LAMP/EPFL and Lightbend, Inc.
+Scala code runner version 2.12.7 -- Copyright 2002-2018, LAMP/EPFL and Lightbend, Inc.
 
 
 > java -version
@@ -66,16 +66,57 @@ git version 2.27.0.windows.1
 git clone git@github.com:apache/flink.git
 ```
 * 下载完后直接导入idea
-* 切换分支到1.12.0
-* 修改根目录下pom文件内容，如下：
-```xml
 
-```
+* 切换分支到**release-1.16**
+
 * 执行如下操作
-![1615126622(1).jpg](http://ww1.sinaimg.cn/large/b3b57085gy1gobpb8yodtj21hc0u04d3.jpg)
+![1615126622(1).jpg](https://ww1.sinaimg.cn/large/b3b57085gy1gobpb8yodtj21hc0u04d3.jpg)
+
+
+> 注:编译整体项目前建议先手动编译flink-runtime-web模块
+
+pom 文件修改
+```xml
+<configuration>
+    <arguments>ci --cache-max=0 --no-save ${npm.proxy}</arguments>
+    <environmentVariables>
+        <HUSKY_SKIP_INSTALL>true</HUSKY_SKIP_INSTALL>
+    </environmentVariables>
+</configuration>
+```
+
+替换为
+
+```xml
+<configuration>
+    <arguments>install -g -registry=https://registry.npm.taobao.org
+        --cache-max=0 --no-save
+    </arguments>
+    <environmentVariables>
+        <HUSKY_SKIP_INSTALL>true</HUSKY_SKIP_INSTALL>
+    </environmentVariables>
+</configuration>
+```
+
+```shell
+cd flink-runtime-web
+
+cd web-dashboard
+
+# 此处使用项目里的npm
+./node/npm install
+
+./node/npm run build
+```
+
+
 * 开始编译
 ```shell
-mvn clean install -DskipTests -Drat.skip=true -Dcheckstyle.skip=true -Dscala=2.12.12
+mvn clean install -DskipTests -Dfast
+
+或
+
+mvn clean install -DskipTests -Drat.skip=true -Dcheckstyle.skip=true -Dscala=2.12.7
 ```
 
 
