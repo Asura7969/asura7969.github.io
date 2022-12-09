@@ -40,22 +40,22 @@ git version 2.27.0.windows.1
 ## maven mirror 配置
 ```xml
     <mirror>
-        <id>nexus-hortonworks</id>
-        <mirrorOf>central</mirrorOf>
-        <name>Nexus hortonworks</name>
-        <url>https://repo.hortonworks.com/content/groups/public/</url>
+      <id>nexus-aliyun</id>
+      <mirrorOf>*,!jeecg,!jeecg-snapshots,!mapr-releases</mirrorOf>
+      <name>Nexus aliyun</name>
+      <url>http://maven.aliyun.com/nexus/content/groups/public</url>
     </mirror>
     <mirror>
-        <id>central</id>
-        <name>Maven Repository Switchboard</name>
-        <url>http://repo1.maven.org/maven2/</url>
-        <mirrorOf>central</mirrorOf>
-    </mirror>
+      <id>mapr-public</id>
+      <mirrorOf>mapr-releases</mirrorOf>
+      <name>mapr-releases</name>
+      <url>https://maven.aliyun.com/repository/mapr-public</url>
+      </mirror>
     <mirror>
-        <id>central2</id>
-        <name>Maven Repository Switchboard</name>
-        <url>http://repo1.maven.apache.org/maven2/</url>
-        <mirrorOf>central</mirrorOf>
+      <id>confluent</id>
+      <mirrorOf>confluent</mirrorOf>
+      <name>confluent</name>
+      <url>http://packages.confluent.io/maven/</url>
     </mirror>
 ```
 
