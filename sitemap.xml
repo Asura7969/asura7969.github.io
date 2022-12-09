@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://asura7969.github.io/2022/12/09/Flink%201.12.0%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
+    <loc>https://asura7969.github.io/2022/12/09/Flink%201.16.0%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91/</loc>
     
     <lastmod>2022-12-09</lastmod>
     
@@ -312,6 +312,13 @@
 
   
   <url>
+    <loc>https://asura7969.github.io/tags/delta/</loc>
+    <lastmod>2022-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://asura7969.github.io/tags/flink/</loc>
     <lastmod>2022-12-09</lastmod>
     <changefreq>daily</changefreq>
@@ -320,6 +327,13 @@
   
   <url>
     <loc>https://asura7969.github.io/tags/java/</loc>
+    <lastmod>2022-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://asura7969.github.io/tags/Rust/</loc>
     <lastmod>2022-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
@@ -346,21 +360,14 @@
     <priority>0.6</priority>
   </url>
   
-  <url>
-    <loc>https://asura7969.github.io/tags/delta/</loc>
-    <lastmod>2022-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/tags/Rust/</loc>
-    <lastmod>2022-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
 
+  
+  <url>
+    <loc>https://asura7969.github.io/categories/%E6%95%B0%E6%8D%AE%E6%B9%96/</loc>
+    <lastmod>2022-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
   
   <url>
     <loc>https://asura7969.github.io/categories/flink/</loc>
@@ -398,6 +405,13 @@
   </url>
   
   <url>
+    <loc>https://asura7969.github.io/categories/rust/</loc>
+    <lastmod>2022-12-09</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://asura7969.github.io/categories/spark/</loc>
     <lastmod>2022-12-09</lastmod>
     <changefreq>daily</changefreq>
@@ -420,20 +434,6 @@
   
   <url>
     <loc>https://asura7969.github.io/categories/shuffle/</loc>
-    <lastmod>2022-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/%E6%95%B0%E6%8D%AE%E6%B9%96/</loc>
-    <lastmod>2022-12-09</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://asura7969.github.io/categories/rust/</loc>
     <lastmod>2022-12-09</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
